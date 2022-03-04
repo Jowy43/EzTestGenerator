@@ -130,6 +130,12 @@ background-color: rgb(27, 29, 35);</string>
        </item>
        <item>
         <widget class="QFrame" name="frame_top">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -338,6 +344,9 @@ QPushButton:hover{
           <property name="spacing">
            <number>0</number>
           </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
           <property name="topMargin">
            <number>0</number>
           </property>
@@ -447,10 +456,10 @@ QPushButton:hover{
                <number>0</number>
               </property>
               <property name="leftMargin">
-               <number>0</number>
+               <number>6</number>
               </property>
               <property name="topMargin">
-               <number>0</number>
+               <number>10</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -460,8 +469,14 @@ QPushButton:hover{
               </property>
               <item>
                <widget class="QStackedWidget" name="pages_test_create">
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="currentIndex">
+                 <number>1</number>
+                </property>
                 <widget class="QWidget" name="npg_testname">
-                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
                   <property name="spacing">
                    <number>0</number>
                   </property>
@@ -479,13 +494,22 @@ QPushButton:hover{
                   </property>
                   <item>
                    <widget class="QFrame" name="frame_2">
+                    <property name="maximumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
+                    </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <property name="lineWidth">
+                     <number>1</number>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
                      <property name="spacing">
                       <number>0</number>
                      </property>
@@ -502,14 +526,371 @@ QPushButton:hover{
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QTextEdit" name="textEdit"/>
+                      <widget class="QLabel" name="label_3">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                         <weight>50</weight>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(255, 255, 255);</string>
+                       </property>
+                       <property name="text">
+                        <string>Titulo</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QLineEdit {
+	
+	color: rgb(255, 255, 255);
+	background-color: rgb(33, 37, 43);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Nombre del Test</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_3">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_5">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QPushButton" name="pushButton">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>150</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	
+	color: rgb(255, 255, 255);
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Crear Test</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
                      </item>
                     </layout>
                    </widget>
                   </item>
                  </layout>
                 </widget>
-                <widget class="QWidget" name="preguntas_test"/>
+                <widget class="QWidget" name="preguntas_test">
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_4">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <widget class="QLabel" name="label_4">
+                     <property name="geometry">
+                      <rect>
+                       <x>400</x>
+                       <y>20</y>
+                       <width>151</width>
+                       <height>51</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Pregunta numero 1</string>
+                     </property>
+                    </widget>
+                    <widget class="QTextEdit" name="textEdit">
+                     <property name="geometry">
+                      <rect>
+                       <x>180</x>
+                       <y>90</y>
+                       <width>501</width>
+                       <height>31</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Enunciado de la pregunta</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="label_5">
+                     <property name="geometry">
+                      <rect>
+                       <x>90</x>
+                       <y>90</y>
+                       <width>71</width>
+                       <height>31</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Pregunta:</string>
+                     </property>
+                    </widget>
+                    <widget class="QFrame" name="frame_5">
+                     <property name="geometry">
+                      <rect>
+                       <x>170</x>
+                       <y>130</y>
+                       <width>511</width>
+                       <height>291</height>
+                      </rect>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>600</width>
+                       <height>300</height>
+                      </size>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <item>
+                       <widget class="QStackedWidget" name="stackedWidget">
+                        <property name="currentIndex">
+                         <number>0</number>
+                        </property>
+                        <widget class="QWidget" name="page_Respuestas">
+                         <layout class="QHBoxLayout" name="horizontalLayout_7">
+                          <item>
+                           <widget class="QScrollArea" name="scrollArea">
+                            <property name="widgetResizable">
+                             <bool>true</bool>
+                            </property>
+                            <widget class="QWidget" name="scrollAreaWidgetContents">
+                             <property name="geometry">
+                              <rect>
+                               <x>0</x>
+                               <y>0</y>
+                               <width>471</width>
+                               <height>251</height>
+                              </rect>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_11">
+                              <item>
+                               <widget class="QFrame" name="frame_7">
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Raised</enum>
+                                </property>
+                                <widget class="QTextEdit" name="textEdit_2">
+                                 <property name="geometry">
+                                  <rect>
+                                   <x>100</x>
+                                   <y>60</y>
+                                   <width>350</width>
+                                   <height>40</height>
+                                  </rect>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>350</width>
+                                   <height>40</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">color: rgb(255, 255, 255);</string>
+                                 </property>
+                                 <property name="placeholderText">
+                                  <string>Introduce tu respuesta</string>
+                                 </property>
+                                </widget>
+                                <widget class="QLabel" name="label_7">
+                                 <property name="geometry">
+                                  <rect>
+                                   <x>0</x>
+                                   <y>60</y>
+                                   <width>100</width>
+                                   <height>30</height>
+                                  </rect>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>100</width>
+                                   <height>30</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">color: rgb(255, 255, 255);</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>Respuesta A</string>
+                                 </property>
+                                </widget>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="page_Num_Res">
+                         <widget class="QLabel" name="label_6">
+                          <property name="geometry">
+                           <rect>
+                            <x>70</x>
+                            <y>120</y>
+                            <width>151</width>
+                            <height>41</height>
+                           </rect>
+                          </property>
+                          <property name="text">
+                           <string>Número de respuestas</string>
+                          </property>
+                         </widget>
+                         <widget class="QSpinBox" name="spinBox">
+                          <property name="geometry">
+                           <rect>
+                            <x>270</x>
+                            <y>120</y>
+                            <width>111</width>
+                            <height>41</height>
+                           </rect>
+                          </property>
+                         </widget>
+                        </widget>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QFrame" name="frame_6">
+                     <property name="geometry">
+                      <rect>
+                       <x>20</x>
+                       <y>20</y>
+                       <width>351</width>
+                       <height>51</height>
+                      </rect>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </widget>
               </item>
              </layout>
