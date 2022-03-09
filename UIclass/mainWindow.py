@@ -18,6 +18,8 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        # por defecto se crean dos respuestas siempre
+        self.ui.spinBox_numRes.setValue(2)
         # Pagina por defecto al iniciar la aplicación
         self.ui.pages_widget.setCurrentWidget(self.ui.pg_home)
 
@@ -25,7 +27,7 @@ class MainWindow(QMainWindow):
         self.ui.pages_test_create.setCurrentWidget(self.ui.pg_testname)
 
         ## Evento del botón del menu desplegable
-        self.ui.btn_toggle.clicked.connect(lambda: UIFunctions.toggleMenu(self, 250, True))
+        self.connect = self.ui.btn_toggle.clicked.connect(lambda: UIFunctions.toggleMenu(self, 250, True))
 
         # Enlaces de botones del menu con sus páginas
         # Página 1
@@ -34,20 +36,52 @@ class MainWindow(QMainWindow):
         self.ui.btn_menu_home_2.clicked.connect(lambda: self.ui.pages_widget.setCurrentWidget(self.ui.pg_create))
         # Página 3
         self.ui.btn_menu_home_3.clicked.connect(lambda: self.ui.pages_widget.setCurrentWidget(self.ui.pg_list))
-
         # Enlaces para crear tests
         # Crear nombre del test
 
-        self.ui.btn_crearTest.clicked.connect(lambda: CrearTest(self.ui))
-
+        self.ui.btn_crearTest.clicked.connect(lambda: Crear_Test(self.ui))
+        self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Num_Res)
         self.show()
 
 
-class CrearTest():
-    def __init__(self, ui):
-        super(CrearTest, self).__init__()
+class Pregunta_actual:
+    def __init__(self, ui: Ui_MainWindow, lastTestId: int):
+        super(Pregunta_actual, self).__init__()
         self.ui = ui
-        self.lastid = self.crearTest(self.ui.lineEdit_nombreTest.text())
+        self.lastTestId = lastTestId
+        self.numRes = self.ui.spinBox_numRes.value()
+        self.lastPreId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.numRes, self.lastTestId)
+        self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Respuestas)
+
+    def generarRespuestas(self, labelRespuesta: str):
+        self.ui.label_respuesta.setText("Respuesta", labelRespuesta)
+        self.ui.textEdit_respuesta.setText("")
+
+    def crearPregunta(self, nombre: str, numRespuestas: int, idTest: int):
+        if not nombre:
+            self.ui.label_preguntaError.setText(
+                "Ocurrio un error al crear la pregunta.\n Introduce unha pregunta válida.")
+            QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
+        elif numRespuestas < 0:
+            self.ui.label_preguntaError.setText(
+                "Ocurrio un error al crear la pregunta.\n Introduce un número de respuestas válida.")
+            QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
+        else:
+            con = Conection.newConnection()
+            cur = con.cursor()
+            sql = "Insert into preguntas(nombrePregunta,idTest) VALUES('%s', '%s')" % (nombre, idTest)
+            cur.execute(sql)
+            con.commit()
+            return cur.lastrowid
+
+
+class Crear_Test:
+    def __init__(self, ui: Ui_MainWindow):
+        super(Crear_Test, self).__init__()
+        self.ui = ui
+        self.lastTestId = self.crearTest(self.ui.lineEdit_nombreTest.text())
+        self.ui.pages_test_create.setCurrentWidget(self.ui.preguntas_test)
+        self.ui.btn_crearRespuesta.clicked.connect(lambda: Pregunta_actual(self.ui, self.lastTestId))
 
     def crearTest(self, nombre: str):
         if not nombre:
@@ -56,19 +90,10 @@ class CrearTest():
         else:
             con = Conection.newConnection()
             cur = con.cursor()
-            sql = "Insert into tests(nombre) VALUES('%s')" % nombre
+            sql = "Insert into tests(nombreTest) VALUES('%s')" % nombre
             cur.execute(sql)
             con.commit()
             return cur.lastrowid
-
-    def crearPregunta(self, nombre: str):
-        if not nombre:
-            self.ui.label_tituloTestError.setText("Ocurrio un error al crear el test.\n Introduce un nombre válido.")
-            QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
-        else:
-            con = Conection.newConnection()
-            cur = con.cursor()
-            sql = "Insert into preguntas(nombre"
 
 
 class UIFunctions(MainWindow):
