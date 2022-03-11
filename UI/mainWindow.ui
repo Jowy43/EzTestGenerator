@@ -895,6 +895,16 @@ QPushButton:pressed {
                                    </property>
                                   </widget>
                                  </item>
+                                 <item>
+                                  <widget class="QCheckBox" name="ch_verdadera">
+                                   <property name="styleSheet">
+                                    <string notr="true">color: rgb(255, 255, 255);</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Verdadera?</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -903,7 +913,7 @@ QPushButton:pressed {
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="btn_crearTest_2">
+                           <widget class="QPushButton" name="btn_siguienteRespuesta">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                               <horstretch>0</horstretch>

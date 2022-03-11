@@ -1,5 +1,7 @@
 import sys
 import platform
+
+import cont as cont
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
                             QSize, QTime, QUrl, Qt, QEvent)
@@ -50,12 +52,25 @@ class Pregunta_actual:
         self.ui = ui
         self.lastTestId = lastTestId
         self.numRes = self.ui.spinBox_numRes.value()
+        self.cont = 0
         self.lastPreId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.numRes, self.lastTestId)
-        self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Respuestas)
+        if self.lastPreId is not None:
+            self.ui.btn_siguienteRespuesta.clicked.connect(lambda: self.generarRespuestas(self.numRes))
 
-    def generarRespuestas(self, labelRespuesta: str):
-        self.ui.label_respuesta.setText("Respuesta", labelRespuesta)
-        self.ui.textEdit_respuesta.setText("")
+    def generarRespuestas(self, numRes: int):
+        print(self.cont)
+        if (self.cont + 1) == numRes:
+            self.ui.label_respuesta.setText("Respuesta" + str(self.cont + 1))
+            self.ui.textEdit_respuesta.setText("")
+            self.ui.btn_siguienteRespuesta.setText("Finalizar pregunta.")
+            self.cont += 1
+        elif self.cont >= numRes:
+            self.ui.textEdit_respuesta.setText("")
+            self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Num_Res)
+        else:
+            self.ui.label_respuesta.setText("Respuesta" + str(self.cont + 1))
+            self.ui.textEdit_respuesta.setText("")
+            self.cont += 1
 
     def crearPregunta(self, nombre: str, numRespuestas: int, idTest: int):
         if not nombre:
@@ -75,6 +90,7 @@ class Pregunta_actual:
             return cur.lastrowid
 
 
+# Clase para crear los test e insertarlos en la base de datos
 class Crear_Test:
     def __init__(self, ui: Ui_MainWindow):
         super(Crear_Test, self).__init__()
