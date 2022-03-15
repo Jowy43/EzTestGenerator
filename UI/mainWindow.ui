@@ -875,7 +875,7 @@ QPushButton:pressed {
                                     <string notr="true">color: rgb(255, 255, 255);</string>
                                    </property>
                                    <property name="text">
-                                    <string>Respuesta A</string>
+                                    <string>Respuesta 1</string>
                                    </property>
                                   </widget>
                                  </item>

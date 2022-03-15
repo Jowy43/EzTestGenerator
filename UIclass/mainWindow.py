@@ -1,7 +1,6 @@
 import sys
 import platform
 
-import cont as cont
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
                             QSize, QTime, QUrl, Qt, QEvent)
@@ -52,23 +51,34 @@ class Pregunta_actual:
         self.ui = ui
         self.lastTestId = lastTestId
         self.numRes = self.ui.spinBox_numRes.value()
-        self.cont = 0
+        self.cont = 1
+        self.dicionario = {}
         self.lastPreId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.numRes, self.lastTestId)
-        if self.lastPreId is not None:
-            self.ui.btn_siguienteRespuesta.clicked.connect(lambda: self.generarRespuestas(self.numRes))
+        self.ui.btn_siguienteRespuesta.clicked.connect(lambda: self.generarRespuestas(self.numRes))
+
+    def insertarRespuestas(self, respuestas):
+        print(respuestas)
 
     def generarRespuestas(self, numRes: int):
-        print(self.cont)
         if (self.cont + 1) == numRes:
             self.ui.label_respuesta.setText("Respuesta" + str(self.cont + 1))
-            self.ui.textEdit_respuesta.setText("")
             self.ui.btn_siguienteRespuesta.setText("Finalizar pregunta.")
+            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
+            self.ui.textEdit_respuesta.setText("")
             self.cont += 1
         elif self.cont >= numRes:
-            self.ui.textEdit_respuesta.setText("")
+            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
+            self.insertarRespuestas(self.dicionario)
+            self.ui.pages_Respuestas.currentWidget().close()
             self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Num_Res)
+            self.ui.textEdit_respuesta.setText("")
+            self.ui.label_respuesta.setText("Respuesta 1")
+            self.ui.btn_siguienteRespuesta.setText("Crear Respuesta.")
+            self.dicionario.clear()
+            self.cont = 1
         else:
-            self.ui.label_respuesta.setText("Respuesta" + str(self.cont + 1))
+            self.ui.label_respuesta.setText("Respuesta" + str(self.cont))
+            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
             self.ui.textEdit_respuesta.setText("")
             self.cont += 1
 
@@ -87,6 +97,8 @@ class Pregunta_actual:
             sql = "Insert into preguntas(nombrePregunta,idTest) VALUES('%s', '%s')" % (nombre, idTest)
             cur.execute(sql)
             con.commit()
+            self.ui.pages_Respuestas.currentWidget().close()
+            self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Respuestas)
             return cur.lastrowid
 
 
