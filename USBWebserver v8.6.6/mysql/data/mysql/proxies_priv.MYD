@@ -1,1 +1,9 @@
-ÿlocalhost                                                                                                                                                                           root                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       _ôRj
+ÿlocalhost                                                                                                                                                                           root                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       _ôRj2022-03-16 17:16:00 10840 [Note] Event Scheduler: Loaded 0 events
+2022-03-16 17:16:00 10840 [Note] E:\joel\python\charm\proyectoFinalDi\USBWebserver v8.6.6/mysql/bin/mysqld_usbwv8.exe: ready for connections.
+Version: '5.6.13'  socket: ''  port: 3307  MySQL Community Server (GPL)
+2022-03-16 17:16:11 1b64  InnoDB: Warning: table 'eztest/tests'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-16 17:54:48 1d68  InnoDB: Warning: table 'eztest/cuentas'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-16 17:54:48 1d68  InnoDB: Warning: table 'eztest/respuestas'
+InnoDB: in InnoDB data dictionary has unknown flags 50.

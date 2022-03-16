@@ -1,5 +1,6 @@
 import sys
 import platform
+from mimetypes import init
 
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
@@ -19,8 +20,7 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # por defecto se crean dos respuestas siempre
-        self.ui.spinBox_numRes.setValue(2)
+
         # Pagina por defecto al iniciar la aplicación
         self.ui.pages_widget.setCurrentWidget(self.ui.pg_home)
 
@@ -39,66 +39,86 @@ class MainWindow(QMainWindow):
         self.ui.btn_menu_home_3.clicked.connect(lambda: self.ui.pages_widget.setCurrentWidget(self.ui.pg_list))
         # Enlaces para crear tests
         # Crear nombre del test
-
         self.ui.btn_crearTest.clicked.connect(lambda: Crear_Test(self.ui))
-        self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Num_Res)
         self.show()
 
 
-class Pregunta_actual:
-    def __init__(self, ui: Ui_MainWindow, lastTestId: int):
-        super(Pregunta_actual, self).__init__()
+class PreguntaActual():
+    def __init__(self, ui: Ui_MainWindow, IdTest: int):
+        super(PreguntaActual, self).__init__()
         self.ui = ui
-        self.lastTestId = lastTestId
-        self.numRes = self.ui.spinBox_numRes.value()
-        self.cont = 1
-        self.dicionario = {}
-        self.lastPreId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.numRes, self.lastTestId)
-        self.ui.btn_siguienteRespuesta.clicked.connect(lambda: self.generarRespuestas(self.numRes))
+        self.IdTest = IdTest
+        self.preguntaId = None
 
-    def insertarRespuestas(self, respuestas):
-        print(respuestas)
+        self.ui.btn_siguientePregunta.clicked.connect(
+            lambda: Crear_pregunta(self.ui, self.IdTest))
+        self.ui.btn_finalizarTest.clicked.connect(lambda: Finalizar_Test(self.ui, self.IdTest))
 
-    def generarRespuestas(self, numRes: int):
-        if (self.cont + 1) == numRes:
-            self.ui.label_respuesta.setText("Respuesta" + str(self.cont + 1))
-            self.ui.btn_siguienteRespuesta.setText("Finalizar pregunta.")
-            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
-            self.ui.textEdit_respuesta.setText("")
-            self.cont += 1
-        elif self.cont >= numRes:
-            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
-            self.insertarRespuestas(self.dicionario)
-            self.ui.pages_Respuestas.currentWidget().close()
-            self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Num_Res)
-            self.ui.textEdit_respuesta.setText("")
-            self.ui.label_respuesta.setText("Respuesta 1")
-            self.ui.btn_siguienteRespuesta.setText("Crear Respuesta.")
-            self.dicionario.clear()
+
+class Finalizar_Test():
+    def __init__(self, ui: Ui_MainWindow, idTest: int):
+        super(Finalizar_Test, self).__init__()
+        self.ui = ui
+        self.IdTest = idTest
+        Crear_pregunta.crearPregunta(self.ui, self.ui.textEdit_Enunciado.toPlainText(), self.IdTest,
+                                     self.ui.textEdit_resA.toPlainText(),
+                                     self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
+                                     self.ui.checkBox_resB)
+        self.ui.pages_test_create.setCurrentWidget(self.ui.pg_testname)
+        self.ui.label_numeroPregunta.setText("Pregunta número 1")
+        self.ui.textEdit_Enunciado.setText("")
+        self.ui.textEdit_resA.setText("")
+        self.ui.textEdit_resB.setText("")
+        self.ui.checkBox_resA.setChecked(False)
+        self.ui.checkBox_resB.setChecked(False)
+
+
+class Crear_pregunta():
+    def __init__(self, ui: Ui_MainWindow, idTest: int):
+        super(Crear_pregunta, self).__init__()
+        self.ui = ui
+        self.IdTest = idTest
+        self.lastPreguntaId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.IdTest,
+                                                 self.ui.textEdit_resA.toPlainText(),
+                                                 self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
+                                                 self.ui.checkBox_resB)
+        if self.lastPreguntaId is not None:
             self.cont = 1
-        else:
-            self.ui.label_respuesta.setText("Respuesta" + str(self.cont))
-            self.dicionario[self.cont] = self.ui.textEdit_respuesta.toPlainText()
-            self.ui.textEdit_respuesta.setText("")
-            self.cont += 1
+            self.siguientePregunta()
 
-    def crearPregunta(self, nombre: str, numRespuestas: int, idTest: int):
+    def siguientePregunta(self):
+        self.cont += 1
+        self.ui.label_numeroPregunta.setText("Pregunta número " + str(self.cont))
+        self.ui.textEdit_Enunciado.setText("")
+        self.ui.textEdit_resA.setText("")
+        self.ui.textEdit_resB.setText("")
+        self.ui.checkBox_resA.setChecked(False)
+        self.ui.checkBox_resB.setChecked(False)
+
+    @staticmethod
+    def crearPregunta(ui: Ui_MainWindow, nombre: str, idTest: int, respuestaA: str, respuestaB: str,
+                      checkBox_resA: bool,
+                      checkBox_resB: bool):
         if not nombre:
-            self.ui.label_preguntaError.setText(
+            ui.label_preguntaError.setText(
                 "Ocurrio un error al crear la pregunta.\n Introduce unha pregunta válida.")
-            QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
-        elif numRespuestas < 0:
-            self.ui.label_preguntaError.setText(
-                "Ocurrio un error al crear la pregunta.\n Introduce un número de respuestas válida.")
-            QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
+            QtCore.QTimer.singleShot(1500, lambda: ui.label_tituloTestError.setText(""))
+        elif not respuestaA and not respuestaB:
+            ui.label_preguntaError.setText(
+                "Ocurrio un error al crear la pregunta.\n Introduce respuestas válidas.")
+            QtCore.QTimer.singleShot(1500, lambda: ui.label_tituloTestError.setText(""))
         else:
             con = Conection.newConnection()
             cur = con.cursor()
-            sql = "Insert into preguntas(nombrePregunta,idTest) VALUES('%s', '%s')" % (nombre, idTest)
+            correcta = 0
+            if checkBox_resA:
+                correcta = 1
+            elif checkBox_resB:
+                correcta = 2
+            sql = "Insert into preguntas(nombrePregunta,idTest,respuestaA,respuestaB,correcta) VALUES('%s', '%s', '%s', '%s', '%s')" % (
+                nombre, idTest, respuestaA, respuestaB, correcta)
             cur.execute(sql)
             con.commit()
-            self.ui.pages_Respuestas.currentWidget().close()
-            self.ui.pages_Respuestas.setCurrentWidget(self.ui.page_Respuestas)
             return cur.lastrowid
 
 
@@ -108,8 +128,9 @@ class Crear_Test:
         super(Crear_Test, self).__init__()
         self.ui = ui
         self.lastTestId = self.crearTest(self.ui.lineEdit_nombreTest.text())
-        self.ui.pages_test_create.setCurrentWidget(self.ui.preguntas_test)
-        self.ui.btn_crearRespuesta.clicked.connect(lambda: Pregunta_actual(self.ui, self.lastTestId))
+        if self.lastTestId is not None:
+            self.ui.pages_test_create.setCurrentWidget(self.ui.preguntas_test)
+            PreguntaActual(self.ui, self.lastTestId)
 
     def crearTest(self, nombre: str):
         if not nombre:
@@ -121,6 +142,7 @@ class Crear_Test:
             sql = "Insert into tests(nombreTest) VALUES('%s')" % nombre
             cur.execute(sql)
             con.commit()
+            self.ui.lineEdit_nombreTest.setText("")
             return cur.lastrowid
 
 

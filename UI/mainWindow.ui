@@ -803,8 +803,8 @@ QPushButton:pressed {
                       <rect>
                        <x>170</x>
                        <y>130</y>
-                       <width>521</width>
-                       <height>271</height>
+                       <width>511</width>
+                       <height>231</height>
                       </rect>
                      </property>
                      <property name="sizePolicy">
@@ -827,107 +827,139 @@ QPushButton:pressed {
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
                       <item>
-                       <widget class="QStackedWidget" name="pages_Respuestas">
-                        <property name="currentIndex">
-                         <number>0</number>
+                       <widget class="QFrame" name="frame_6">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>54</height>
+                         </size>
                         </property>
-                        <widget class="QWidget" name="page_Respuestas">
-                         <layout class="QVBoxLayout" name="verticalLayout_12">
-                          <item>
-                           <widget class="QScrollArea" name="scrollArea">
-                            <property name="maximumSize">
-                             <size>
-                              <width>16777215</width>
-                              <height>189</height>
-                             </size>
-                            </property>
-                            <property name="widgetResizable">
-                             <bool>true</bool>
-                            </property>
-                            <widget class="QWidget" name="scrollArea_respuestas">
-                             <property name="geometry">
-                              <rect>
-                               <x>0</x>
-                               <y>0</y>
-                               <width>481</width>
-                               <height>187</height>
-                              </rect>
-                             </property>
-                             <layout class="QVBoxLayout" name="verticalLayout_11">
-                              <item>
-                               <widget class="QFrame" name="frame_Respuestas">
-                                <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_8">
-                                 <item>
-                                  <widget class="QLabel" name="label_respuesta">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>100</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                   <property name="styleSheet">
-                                    <string notr="true">color: rgb(255, 255, 255);</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Respuesta 1</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QTextEdit" name="textEdit_respuesta">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>350</width>
-                                     <height>40</height>
-                                    </size>
-                                   </property>
-                                   <property name="styleSheet">
-                                    <string notr="true">color: rgb(255, 255, 255);</string>
-                                   </property>
-                                   <property name="placeholderText">
-                                    <string>Introduce tu respuesta</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QCheckBox" name="ch_verdadera">
-                                   <property name="styleSheet">
-                                    <string notr="true">color: rgb(255, 255, 255);</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Verdadera?</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="btn_siguienteRespuesta">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>50000</width>
-                              <height>72</height>
-                             </size>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">QPushButton {
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_7">
+                         <item>
+                          <widget class="QLabel" name="label_resA">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Respuesta A:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QTextEdit" name="textEdit_resA">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Texto de la respuesta</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_resA">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Correcta?</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_7">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>54</height>
+                         </size>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <item>
+                          <widget class="QLabel" name="label_resB">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Respuesta B:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QTextEdit" name="textEdit_resB">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Texto de la respuesta</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_resB">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Correcta?</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_preguntaError">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_8">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_9">
+                         <item>
+                          <widget class="QPushButton" name="btn_siguientePregunta">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton {
 	
 	color: rgb(255, 255, 255);
 	border: 2px solid rgb(52, 59, 72);
@@ -942,67 +974,28 @@ QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	border: 2px solid rgb(43, 50, 61);
 }</string>
-                            </property>
-                            <property name="text">
-                             <string>Crear Respuesta</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                        <widget class="QWidget" name="page_Num_Res">
-                         <widget class="QLabel" name="label_numRes">
-                          <property name="geometry">
-                           <rect>
-                            <x>80</x>
-                            <y>60</y>
-                            <width>151</width>
-                            <height>41</height>
-                           </rect>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">color: rgb(255, 255, 255);</string>
-                          </property>
-                          <property name="text">
-                           <string>Número de respuestas</string>
-                          </property>
-                         </widget>
-                         <widget class="QSpinBox" name="spinBox_numRes">
-                          <property name="geometry">
-                           <rect>
-                            <x>300</x>
-                            <y>60</y>
-                            <width>111</width>
-                            <height>41</height>
-                           </rect>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">color: rgb(255, 255, 255);</string>
-                          </property>
-                         </widget>
-                         <widget class="QPushButton" name="btn_crearRespuesta">
-                          <property name="geometry">
-                           <rect>
-                            <x>180</x>
-                            <y>190</y>
-                            <width>150</width>
-                            <height>30</height>
-                           </rect>
-                          </property>
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>150</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">QPushButton {
+                           </property>
+                           <property name="text">
+                            <string>Siguiente pregunta</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="btn_finalizarTest">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton {
 	
 	color: rgb(255, 255, 255);
 	border: 2px solid rgb(52, 59, 72);
@@ -1017,52 +1010,13 @@ QPushButton:pressed {
 	background-color: rgb(35, 40, 49);
 	border: 2px solid rgb(43, 50, 61);
 }</string>
-                          </property>
-                          <property name="text">
-                           <string>Generar Respuestas</string>
-                          </property>
-                         </widget>
-                         <widget class="QLabel" name="label_preguntaError">
-                          <property name="geometry">
-                           <rect>
-                            <x>110</x>
-                            <y>130</y>
-                            <width>298</width>
-                            <height>25</height>
-                           </rect>
-                          </property>
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>5000</width>
-                            <height>25</height>
-                           </size>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::LeftToRight</enum>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">color: rgb(255, 255, 255);</string>
-                          </property>
-                          <property name="lineWidth">
-                           <number>1</number>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="scaledContents">
-                           <bool>false</bool>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
-                         </widget>
-                        </widget>
+                           </property>
+                           <property name="text">
+                            <string>Finalizar Test</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
                        </widget>
                       </item>
                      </layout>
