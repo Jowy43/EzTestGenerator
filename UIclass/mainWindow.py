@@ -1,6 +1,8 @@
 import sys
 import platform
 from mimetypes import init
+from sched import Event
+from turtle import onclick
 
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
@@ -71,6 +73,8 @@ class Finalizar_Test():
         self.ui.textEdit_resB.setText("")
         self.ui.checkBox_resA.setChecked(False)
         self.ui.checkBox_resB.setChecked(False)
+        self.ui.btn_siguientePregunta.destroy()
+        self.ui.btn_finalizarTest.destroy()
 
 
 class Crear_pregunta():
@@ -78,10 +82,11 @@ class Crear_pregunta():
         super(Crear_pregunta, self).__init__()
         self.ui = ui
         self.IdTest = idTest
-        self.lastPreguntaId = self.crearPregunta(self.ui.textEdit_Enunciado.toPlainText(), self.IdTest,
-                                                 self.ui.textEdit_resA.toPlainText(),
-                                                 self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
-                                                 self.ui.checkBox_resB)
+        self.lastPreguntaId = Crear_pregunta.crearPregunta(self.ui, self.ui.textEdit_Enunciado.toPlainText(),
+                                                           self.IdTest,
+                                                           self.ui.textEdit_resA.toPlainText(),
+                                                           self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
+                                                           self.ui.checkBox_resB)
         if self.lastPreguntaId is not None:
             self.cont = 1
             self.siguientePregunta()
