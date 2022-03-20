@@ -1,9 +1,3 @@
-import sys
-import platform
-from mimetypes import init
-from sched import Event
-from turtle import onclick
-
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
                             QSize, QTime, QUrl, Qt, QEvent)
@@ -11,6 +5,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
                            QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import UIclass.var
 from UI.mainWindow import Ui_MainWindow
 from UIclass.Conection import Conection
 
@@ -19,9 +14,9 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
 
         # Pagina por defecto al iniciar la aplicación
         self.ui.pages_widget.setCurrentWidget(self.ui.pg_home)
@@ -62,7 +57,7 @@ class Finalizar_Test():
         super(Finalizar_Test, self).__init__()
         self.ui = ui
         self.IdTest = idTest
-        Crear_pregunta.crearPregunta(self.ui, self.ui.textEdit_Enunciado.toPlainText(), self.IdTest,
+        Crear_pregunta.crearPregunta(self, self.ui, self.ui.textEdit_Enunciado.toPlainText(), self.IdTest,
                                      self.ui.textEdit_resA.toPlainText(),
                                      self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
                                      self.ui.checkBox_resB)
@@ -73,8 +68,9 @@ class Finalizar_Test():
         self.ui.textEdit_resB.setText("")
         self.ui.checkBox_resA.setChecked(False)
         self.ui.checkBox_resB.setChecked(False)
-        self.ui.btn_siguientePregunta.destroy()
-        self.ui.btn_finalizarTest.destroy()
+        self.ventana: MainWindow = UIclass.var.mainWin
+        self.ventana.close()
+        UIclass.var.mainWin = MainWindow()
 
 
 class Crear_pregunta():
@@ -82,7 +78,7 @@ class Crear_pregunta():
         super(Crear_pregunta, self).__init__()
         self.ui = ui
         self.IdTest = idTest
-        self.lastPreguntaId = Crear_pregunta.crearPregunta(self.ui, self.ui.textEdit_Enunciado.toPlainText(),
+        self.lastPreguntaId = Crear_pregunta.crearPregunta(self, self.ui, self.ui.textEdit_Enunciado.toPlainText(),
                                                            self.IdTest,
                                                            self.ui.textEdit_resA.toPlainText(),
                                                            self.ui.textEdit_resB.toPlainText(), self.ui.checkBox_resA,
@@ -90,6 +86,10 @@ class Crear_pregunta():
         if self.lastPreguntaId is not None:
             self.cont = 1
             self.siguientePregunta()
+            return None
+
+    def __del__(self):
+        print("Se destruye objeto de la clase Crear Pregunta")
 
     def siguientePregunta(self):
         self.cont += 1
@@ -101,7 +101,7 @@ class Crear_pregunta():
         self.ui.checkBox_resB.setChecked(False)
 
     @staticmethod
-    def crearPregunta(ui: Ui_MainWindow, nombre: str, idTest: int, respuestaA: str, respuestaB: str,
+    def crearPregunta(objeto: object, ui: Ui_MainWindow, nombre: str, idTest: int, respuestaA: str, respuestaB: str,
                       checkBox_resA: bool,
                       checkBox_resB: bool):
         if not nombre:
@@ -122,8 +122,10 @@ class Crear_pregunta():
                 correcta = 2
             sql = "Insert into preguntas(nombrePregunta,idTest,respuestaA,respuestaB,correcta) VALUES('%s', '%s', '%s', '%s', '%s')" % (
                 nombre, idTest, respuestaA, respuestaB, correcta)
+            print(sql)
             cur.execute(sql)
             con.commit()
+            Crear_pregunta.__del__(objeto)
             return cur.lastrowid
 
 
@@ -139,7 +141,8 @@ class Crear_Test:
 
     def crearTest(self, nombre: str):
         if not nombre:
-            self.ui.label_tituloTestError.setText("Ocurrio un error al crear el test.\n Introduce un nombre válido.")
+            self.ui.label_tituloTestError.setText(
+                "Ocurrio un error al crear el test.\n Introduce un nombre válido.")
             QtCore.QTimer.singleShot(1500, lambda: self.ui.label_tituloTestError.setText(""))
         else:
             con = Conection.newConnection()
