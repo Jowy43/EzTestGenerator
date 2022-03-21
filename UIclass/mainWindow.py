@@ -40,6 +40,14 @@ class MainWindow(QMainWindow):
         self.show()
 
 
+class AgragarListaExamen():
+    def __init__(self, ui: Ui_MainWindow):
+        super(AgragarListaExamen, self).__init__()
+        self.ui = ui
+        self.items = ['1', '2', '3', '4']
+        self.ui.listWidgetTests.addItems(self.items)
+
+
 class PreguntaActual():
     def __init__(self, ui: Ui_MainWindow, IdTest: int):
         super(PreguntaActual, self).__init__()
@@ -68,6 +76,7 @@ class Finalizar_Test():
         self.ui.textEdit_resB.setText("")
         self.ui.checkBox_resA.setChecked(False)
         self.ui.checkBox_resB.setChecked(False)
+        AgragarListaExamen(self.ui)
         self.ventana: MainWindow = UIclass.var.mainWin
         self.ventana.close()
         UIclass.var.mainWin = MainWindow()

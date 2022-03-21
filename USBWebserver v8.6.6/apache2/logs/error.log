@@ -1,5 +1,5 @@
-[Sun Mar 20 23:28:40.028606 2022] [mpm_winnt:notice] [pid 15240:tid 552] AH00455: Apache/2.4.48 (Win32) PHP/8.0.7 configured -- resuming normal operations
-[Sun Mar 20 23:28:40.028606 2022] [mpm_winnt:notice] [pid 15240:tid 552] AH00456: Apache Lounge VS16 Server built: May 18 2021 10:18:16
-[Sun Mar 20 23:28:40.028606 2022] [core:notice] [pid 15240:tid 552] AH00094: Command line: 'D:\\Joel\\DAM DUAL\\DI\\EzTestGenerator\\USBWebserver v8.6.6/apache2/bin/httpd_usbwv8.exe -d D:/Joel/DAM DUAL/DI/EzTestGenerator/USBWebserver v8.6.6/apache2'
-[Sun Mar 20 23:28:40.033605 2022] [mpm_winnt:notice] [pid 15240:tid 552] AH00418: Parent: Created child process 10484
-[Sun Mar 20 23:28:40.579496 2022] [mpm_winnt:notice] [pid 10484:tid 644] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 21 18:49:42.288418 2022] [mpm_winnt:notice] [pid 1344:tid 640] AH00455: Apache/2.4.48 (Win32) PHP/8.0.7 configured -- resuming normal operations
+[Mon Mar 21 18:49:42.288418 2022] [mpm_winnt:notice] [pid 1344:tid 640] AH00456: Apache Lounge VS16 Server built: May 18 2021 10:18:16
+[Mon Mar 21 18:49:42.288418 2022] [core:notice] [pid 1344:tid 640] AH00094: Command line: 'E:\\joel\\python\\charm\\proyectoFinalDi\\USBWebserver v8.6.6/apache2/bin/httpd_usbwv8.exe -d E:/joel/python/charm/proyectoFinalDi/USBWebserver v8.6.6/apache2'
+[Mon Mar 21 18:49:42.291419 2022] [mpm_winnt:notice] [pid 1344:tid 640] AH00418: Parent: Created child process 5792
+[Mon Mar 21 18:49:42.727417 2022] [mpm_winnt:notice] [pid 5792:tid 688] AH00354: Child: Starting 64 worker threads.
