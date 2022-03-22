@@ -493,6 +493,6 @@ $context["sub_partition"], "getIndexLength", [], "method", false, false, false, 
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/display_partitions.twig", "E:\\joel\\python\\charm\\proyectoFinalDi\\USBWebserver v8.6.6\\phpmyadmin\\templates\\table\\structure\\display_partitions.twig");
+        return new Source("", "table/structure/display_partitions.twig", "D:\\Joel\\DAM DUAL\\DI\\EzTestGenerator\\USBWebserver v8.6.6\\phpmyadmin\\templates\\table\\structure\\display_partitions.twig");
     }
 }

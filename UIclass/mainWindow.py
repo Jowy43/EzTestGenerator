@@ -6,17 +6,21 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
 from PySide2.QtWidgets import *
 
 import UIclass.var
+import pdf.pdf
+from pdf.Examen import Examen
+from pdf.Preguntas import Preguntas
 from UI.mainWindow import Ui_MainWindow
 from UIclass.Conection import Conection
 
 
 class MainWindow(QMainWindow):
-
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
+
+        self.user = 2
 
         # Pagina por defecto al iniciar la aplicación
         self.ui.pages_widget.setCurrentWidget(self.ui.pg_home)
@@ -36,20 +40,50 @@ class MainWindow(QMainWindow):
         self.ui.btn_menu_home_3.clicked.connect(lambda: self.ui.pages_widget.setCurrentWidget(self.ui.pg_list))
         # Enlaces para crear tests
         # Crear nombre del test
-        self.ui.btn_crearTest.clicked.connect(lambda: Crear_Test(self.ui))
+        self.ui.btn_menu_home_3.clicked.connect(lambda: ListarTests(self.ui, self.user))
+        self.ui.btn_crearTest.clicked.connect(lambda: Crear_Test(self.ui, self.user))
         self.show()
 
 
-class AgragarListaExamen():
-    def __init__(self, ui: Ui_MainWindow):
-        super(AgragarListaExamen, self).__init__()
+class ListarTests:
+    def __init__(self, ui: Ui_MainWindow, user: int):
+        super(ListarTests, self).__init__()
         self.ui = ui
-        self.items = ['1', '2', '3', '4']
-        self.ui.listWidgetTests.addItems(self.items)
+        all = ListarTests.allTestUsuario(user)
+        for x in all:
+            self.ui.listWidgetTests.addItem(str(x[0]) + "-" + str(x[1]))
+        self.ui.listWidgetTests.itemDoubleClicked.connect(lambda: self.getItem())
+
+    def getItem(self):
+        id = self.ui.listWidgetTests.currentItem().text().split("-")[0]
+        titulo = self.ui.listWidgetTests.currentItem().text().split("-")[1]
+        resul = self.allPreguntasTest(id)
+        lpreguntas = []
+        for x in resul:
+            lpreguntas.append(Preguntas(str(x[1]), str(x[3]), str(x[4])))
+        Examen(lpreguntas, titulo)
+
+    def allPreguntasTest(self, id: int):
+        con = Conection.newConnection()
+
+        cur = con.cursor()
+        sql = "select * from preguntas where idTest = '%s'" % id
+        cur.execute(sql)
+        result = cur.fetchall()
+        return result
+
+    def allTestUsuario(user: int):
+        con = Conection.newConnection()
+
+        cur = con.cursor()
+        sql = "select * from tests te where te.idCuenta = '%s'" % user
+        cur.execute(sql)
+        result = cur.fetchall()
+        return result
 
 
 class PreguntaActual():
-    def __init__(self, ui: Ui_MainWindow, IdTest: int):
+    def __init__(self, ui: Ui_MainWindow, IdTest: int, user: int):
         super(PreguntaActual, self).__init__()
         self.ui = ui
         self.IdTest = IdTest
@@ -76,7 +110,6 @@ class Finalizar_Test():
         self.ui.textEdit_resB.setText("")
         self.ui.checkBox_resA.setChecked(False)
         self.ui.checkBox_resB.setChecked(False)
-        AgragarListaExamen(self.ui)
         self.ventana: MainWindow = UIclass.var.mainWin
         self.ventana.close()
         UIclass.var.mainWin = MainWindow()
@@ -95,10 +128,6 @@ class Crear_pregunta():
         if self.lastPreguntaId is not None:
             self.cont = 1
             self.siguientePregunta()
-            return None
-
-    def __del__(self):
-        print("Se destruye objeto de la clase Crear Pregunta")
 
     def siguientePregunta(self):
         self.cont += 1
@@ -131,24 +160,23 @@ class Crear_pregunta():
                 correcta = 2
             sql = "Insert into preguntas(nombrePregunta,idTest,respuestaA,respuestaB,correcta) VALUES('%s', '%s', '%s', '%s', '%s')" % (
                 nombre, idTest, respuestaA, respuestaB, correcta)
-            print(sql)
             cur.execute(sql)
             con.commit()
-            Crear_pregunta.__del__(objeto)
+            print(sql)
             return cur.lastrowid
 
 
 # Clase para crear los test e insertarlos en la base de datos
 class Crear_Test:
-    def __init__(self, ui: Ui_MainWindow):
+    def __init__(self, ui: Ui_MainWindow, user: str):
         super(Crear_Test, self).__init__()
         self.ui = ui
-        self.lastTestId = self.crearTest(self.ui.lineEdit_nombreTest.text())
+        self.lastTestId = self.crearTest(self.ui.lineEdit_nombreTest.text(), user)
         if self.lastTestId is not None:
             self.ui.pages_test_create.setCurrentWidget(self.ui.preguntas_test)
-            PreguntaActual(self.ui, self.lastTestId)
+            PreguntaActual(self.ui, self.lastTestId, user)
 
-    def crearTest(self, nombre: str):
+    def crearTest(self, nombre: str, user: str):
         if not nombre:
             self.ui.label_tituloTestError.setText(
                 "Ocurrio un error al crear el test.\n Introduce un nombre válido.")
@@ -156,7 +184,7 @@ class Crear_Test:
         else:
             con = Conection.newConnection()
             cur = con.cursor()
-            sql = "Insert into tests(nombreTest) VALUES('%s')" % nombre
+            sql = "Insert into tests(nombreTest,idCuenta) VALUES('%s','%s')" % (nombre, user)
             cur.execute(sql)
             con.commit()
             self.ui.lineEdit_nombreTest.setText("")
