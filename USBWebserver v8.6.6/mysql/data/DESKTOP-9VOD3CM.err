@@ -1,0 +1,108 @@
+2022-03-20 20:36:14 13552 [Note] Plugin 'FEDERATED' is disabled.
+2022-03-20 20:36:14 13552 [Note] InnoDB: The InnoDB memory heap is disabled
+2022-03-20 20:36:14 13552 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-03-20 20:36:14 13552 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2022-03-20 20:36:14 13552 [Note] InnoDB: Not using CPU crc32 instructions
+2022-03-20 20:36:14 13552 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2022-03-20 20:36:14 13552 [Note] InnoDB: Completed initialization of buffer pool
+2022-03-20 20:36:14 13552 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-03-20 20:36:14 13552 [Note] InnoDB: The log sequence numbers 1625977 and 1625977 in ibdata files do not match the log sequence number 2192771 in the ib_logfiles!
+2022-03-20 20:36:14 13552 [Note] InnoDB: Database was not shutdown normally!
+2022-03-20 20:36:14 13552 [Note] InnoDB: Starting crash recovery.
+2022-03-20 20:36:14 13552 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2022-03-20 20:36:14 13552 [Note] InnoDB: Restoring possible half-written data pages 
+2022-03-20 20:36:14 13552 [Note] InnoDB: from the doublewrite buffer...
+2022-03-20 20:36:15 13552 [Note] InnoDB: 128 rollback segment(s) are active.
+2022-03-20 20:36:15 13552 [Note] InnoDB: Waiting for purge to start
+2022-03-20 20:36:15 1e1c  InnoDB: Warning: table 'mysql/innodb_index_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 20:36:15 1e1c  InnoDB: Warning: table 'mysql/innodb_table_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 20:36:15 1e1c  InnoDB: Warning: table 'eztest/tests'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 20:36:15 13552 [Note] InnoDB: 5.6.13 started; log sequence number 2192771
+2022-03-20 20:36:15 13552 [Note] Server hostname (bind-address): '*'; port: 3307
+2022-03-20 20:36:15 13552 [Note] IPv6 is available.
+2022-03-20 20:36:15 13552 [Note]   - '::' resolves to '::';
+2022-03-20 20:36:15 13552 [Note] Server socket created on IP: '::'.
+2022-03-20 23:28:40 11036 [Note] Plugin 'FEDERATED' is disabled.
+2022-03-20 23:28:40 11036 [Note] InnoDB: The InnoDB memory heap is disabled
+2022-03-20 23:28:40 11036 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-03-20 23:28:40 11036 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2022-03-20 23:28:40 11036 [Note] InnoDB: Not using CPU crc32 instructions
+2022-03-20 23:28:40 11036 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2022-03-20 23:28:40 11036 [Note] InnoDB: Completed initialization of buffer pool
+2022-03-20 23:28:40 11036 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-03-20 23:28:40 11036 [Note] InnoDB: The log sequence numbers 1625977 and 1625977 in ibdata files do not match the log sequence number 2213310 in the ib_logfiles!
+2022-03-20 23:28:40 11036 [Note] InnoDB: Database was not shutdown normally!
+2022-03-20 23:28:40 11036 [Note] InnoDB: Starting crash recovery.
+2022-03-20 23:28:40 11036 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2022-03-20 23:28:40 11036 [Note] InnoDB: Restoring possible half-written data pages 
+2022-03-20 23:28:40 11036 [Note] InnoDB: from the doublewrite buffer...
+2022-03-20 23:28:41 11036 [Note] InnoDB: 128 rollback segment(s) are active.
+2022-03-20 23:28:41 11036 [Note] InnoDB: Waiting for purge to start
+2022-03-20 23:28:41 258  InnoDB: Warning: table 'mysql/innodb_index_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 23:28:41 258  InnoDB: Warning: table 'mysql/innodb_table_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 23:28:41 258  InnoDB: Warning: table 'eztest/tests'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-20 23:28:41 11036 [Note] InnoDB: 5.6.13 started; log sequence number 2213310
+2022-03-20 23:28:41 11036 [Note] Server hostname (bind-address): '*'; port: 3307
+2022-03-20 23:28:41 11036 [Note] IPv6 is available.
+2022-03-20 23:28:41 11036 [Note]   - '::' resolves to '::';
+2022-03-20 23:28:41 11036 [Note] Server socket created on IP: '::'.
+2022-03-21 01:11:55 26228 [Note] Plugin 'FEDERATED' is disabled.
+2022-03-21 01:11:55 26228 [Note] InnoDB: The InnoDB memory heap is disabled
+2022-03-21 01:11:55 26228 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-03-21 01:11:55 26228 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2022-03-21 01:11:55 26228 [Note] InnoDB: Not using CPU crc32 instructions
+2022-03-21 01:11:56 26228 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2022-03-21 01:11:56 26228 [Note] InnoDB: Completed initialization of buffer pool
+2022-03-21 01:11:56 26228 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-03-21 01:11:56 26228 [Note] InnoDB: The log sequence numbers 1625977 and 1625977 in ibdata files do not match the log sequence number 2241850 in the ib_logfiles!
+2022-03-21 01:11:56 26228 [Note] InnoDB: Database was not shutdown normally!
+2022-03-21 01:11:56 26228 [Note] InnoDB: Starting crash recovery.
+2022-03-21 01:11:56 26228 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2022-03-21 01:11:56 26228 [Note] InnoDB: Restoring possible half-written data pages 
+2022-03-21 01:11:56 26228 [Note] InnoDB: from the doublewrite buffer...
+2022-03-21 01:11:56 26228 [Note] InnoDB: 128 rollback segment(s) are active.
+2022-03-21 01:11:56 26228 [Note] InnoDB: Waiting for purge to start
+2022-03-21 01:11:56 25cc  InnoDB: Warning: table 'eztest/tests'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 01:11:56 25cc  InnoDB: Warning: table 'mysql/innodb_table_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 01:11:56 25cc  InnoDB: Warning: table 'mysql/innodb_index_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 01:11:56 26228 [Note] InnoDB: 5.6.13 started; log sequence number 2241850
+2022-03-21 01:11:56 26228 [Note] Server hostname (bind-address): '*'; port: 3307
+2022-03-21 01:11:56 26228 [Note] IPv6 is available.
+2022-03-21 01:11:56 26228 [Note]   - '::' resolves to '::';
+2022-03-21 01:11:56 26228 [Note] Server socket created on IP: '::'.
+2022-03-21 21:47:23 19556 [Note] Plugin 'FEDERATED' is disabled.
+2022-03-21 21:47:23 19556 [Note] InnoDB: The InnoDB memory heap is disabled
+2022-03-21 21:47:23 19556 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2022-03-21 21:47:23 19556 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2022-03-21 21:47:23 19556 [Note] InnoDB: Not using CPU crc32 instructions
+2022-03-21 21:47:23 19556 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2022-03-21 21:47:23 19556 [Note] InnoDB: Completed initialization of buffer pool
+2022-03-21 21:47:23 19556 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-03-21 21:47:23 19556 [Note] InnoDB: The log sequence numbers 1625977 and 1625977 in ibdata files do not match the log sequence number 2260592 in the ib_logfiles!
+2022-03-21 21:47:23 19556 [Note] InnoDB: Database was not shutdown normally!
+2022-03-21 21:47:23 19556 [Note] InnoDB: Starting crash recovery.
+2022-03-21 21:47:23 19556 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2022-03-21 21:47:23 19556 [Note] InnoDB: Restoring possible half-written data pages 
+2022-03-21 21:47:23 19556 [Note] InnoDB: from the doublewrite buffer...
+2022-03-21 21:47:24 19556 [Note] InnoDB: 128 rollback segment(s) are active.
+2022-03-21 21:47:24 19556 [Note] InnoDB: Waiting for purge to start
+2022-03-21 21:47:24 66c4  InnoDB: Warning: table 'eztest/tests'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 21:47:24 66c4  InnoDB: Warning: table 'mysql/innodb_table_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 21:47:24 66c4  InnoDB: Warning: table 'mysql/innodb_index_stats'
+InnoDB: in InnoDB data dictionary has unknown flags 50.
+2022-03-21 21:47:24 19556 [Note] InnoDB: 5.6.13 started; log sequence number 2260592
+2022-03-21 21:47:24 19556 [Note] Server hostname (bind-address): '*'; port: 3307
+2022-03-21 21:47:24 19556 [Note] IPv6 is available.
+2022-03-21 21:47:24 19556 [Note]   - '::' resolves to '::';
+2022-03-21 21:47:24 19556 [Note] Server socket created on IP: '::'.
