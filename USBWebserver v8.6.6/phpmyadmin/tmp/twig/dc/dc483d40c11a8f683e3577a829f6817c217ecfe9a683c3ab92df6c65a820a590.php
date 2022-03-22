@@ -78,6 +78,6 @@ class __TwigTemplate_3f13be43e747bcda27151f7ba144fd047f00214237778cf1eec2680f9cc
 
     public function getSourceContext()
     {
-        return new Source("", "display/results/comment_for_row.twig", "E:\\joel\\python\\charm\\proyectoFinalDi\\USBWebserver v8.6.6\\phpmyadmin\\templates\\display\\results\\comment_for_row.twig");
+        return new Source("", "display/results/comment_for_row.twig", "E:\\joel\\python\\charm\\EzTestGenerator\\USBWebserver v8.6.6\\phpmyadmin\\templates\\display\\results\\comment_for_row.twig");
     }
 }

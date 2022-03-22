@@ -3,6 +3,8 @@ from pdf.pdf import createPdf
 
 
 class Examen:
+    """Se encarga de generar el mapa para crear el pdf"""
+
     def __init__(self, lPreguntas: [], titulo: str):
         super(Examen, self).__init__()
         self.lPreguntas: Preguntas = lPreguntas

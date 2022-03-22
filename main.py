@@ -2,10 +2,9 @@ import sys
 
 from PySide2.QtWidgets import *
 
-from UIclass.mainWindow import MainWindow
-import UIclass
+from UIclass.SplashScreen import SplashScreen
 
 if __name__ == "__main__":
     app = QApplication()
-    UIclass.var.mainWin = MainWindow()
+    main = SplashScreen()
     sys.exit(app.exec_())

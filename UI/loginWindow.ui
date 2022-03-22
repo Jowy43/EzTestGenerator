@@ -194,7 +194,7 @@ QPushButton::pressed{
       <rect>
        <x>295</x>
        <y>345</y>
-       <width>192</width>
+       <width>101</width>
        <height>21</height>
       </rect>
      </property>
@@ -202,7 +202,7 @@ QPushButton::pressed{
       <string notr="true">color:rgba(0,0,0,210)</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No tienes cuenta? &lt;span style=&quot; color:#45beff;&quot;&gt;Registrate aqui!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No tienes cuenta?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -284,6 +284,23 @@ Generator</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>345</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,210);
+border:none;</string>
+     </property>
+     <property name="text">
+      <string>Registrate!</string>
      </property>
     </widget>
    </widget>

@@ -7,6 +7,8 @@ from PySide2.QtWidgets import *
 
 
 class Ui_MainWindow(object):
+    """Clase autogenerada por pyuic que al lanzarla genera la ventana principal de la aplicación."""
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 500)

@@ -9,10 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from images import res
 
 
-class Ui_MainWindow(object):
+class Ui_RegisterWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -136,3 +135,6 @@ class Ui_MainWindow(object):
         self.pushButton_logIn.setText(_translate("MainWindow", "Registrarse"))
         self.label_tittle.setText(_translate("MainWindow", "EzTest \n"
                                                            "Generator"))
+
+
+from images import res

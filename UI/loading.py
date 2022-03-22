@@ -17,6 +17,8 @@ from PySide2.QtWidgets import *
 
 
 class Ui_SplashScreen(object):
+    """Clase autogenerada por pyuic que al lanzarla genera una pantalla de carga"""
+
     def setupUi(self, SplashScreen):
         SplashScreen.setObjectName("SplashScreen")
         SplashScreen.resize(680, 400)

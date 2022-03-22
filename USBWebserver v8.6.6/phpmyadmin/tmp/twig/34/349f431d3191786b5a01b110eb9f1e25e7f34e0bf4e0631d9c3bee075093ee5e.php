@@ -61,6 +61,6 @@ class __TwigTemplate_17c3b5bae764c535a2366f8281490bfff279d255167e13c292bc908ee13
 
     public function getSourceContext()
     {
-        return new Source("", "login/footer.twig", "C:\\Users\\Usuario\\Arquivos\\USBWebserver v8.6.6\\phpmyadmin\\templates\\login\\footer.twig");
+        return new Source("", "login/footer.twig", "E:\\joel\\python\\charm\\EzTestGenerator\\USBWebserver v8.6.6\\phpmyadmin\\templates\\login\\footer.twig");
     }
 }

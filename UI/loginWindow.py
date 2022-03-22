@@ -9,9 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from images import res
 
-class Ui_MainWindow(object):
+
+class Ui_LoginWindow(object):
+    """Clase autogenerada por pyuic que al lanzarla genera una ventana de login"""
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(625, 566)
@@ -94,7 +96,7 @@ class Ui_MainWindow(object):
                                             "")
         self.pushButton_logIn.setObjectName("pushButton_logIn")
         self.label_register = QtWidgets.QLabel(self.widget)
-        self.label_register.setGeometry(QtCore.QRect(295, 345, 192, 21))
+        self.label_register.setGeometry(QtCore.QRect(295, 345, 101, 21))
         self.label_register.setStyleSheet("color:rgba(0,0,0,210)")
         self.label_register.setAlignment(QtCore.Qt.AlignCenter)
         self.label_register.setObjectName("label_register")
@@ -123,6 +125,11 @@ class Ui_MainWindow(object):
         self.label_aviso.setText("")
         self.label_aviso.setAlignment(QtCore.Qt.AlignCenter)
         self.label_aviso.setObjectName("label_aviso")
+        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton.setGeometry(QtCore.QRect(400, 345, 75, 23))
+        self.pushButton.setStyleSheet("color:rgba(0,0,0,210);\n"
+                                      "border:none;")
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -135,7 +142,12 @@ class Ui_MainWindow(object):
         self.lineEdit_name.setPlaceholderText(_translate("MainWindow", "Nombre de Usuario"))
         self.lineEdit_password.setPlaceholderText(_translate("MainWindow", "Constraseña"))
         self.pushButton_logIn.setText(_translate("MainWindow", "Entrar"))
-        self.label_register.setText(_translate("MainWindow", "No tienes cuenta? Registrate aqui!"))
+        self.label_register.setText(
+            _translate("MainWindow", "<html><head/><body><p>No tienes cuenta?</p></body></html>"))
         self.label_tittle.setText(_translate("MainWindow", "EzTest \n"
                                                            "Generator"))
         self.label_problems.setText(_translate("MainWindow", "Problemas para inicar sesión?"))
+        self.pushButton.setText(_translate("MainWindow", "Registrate!"))
+
+
+from images import res

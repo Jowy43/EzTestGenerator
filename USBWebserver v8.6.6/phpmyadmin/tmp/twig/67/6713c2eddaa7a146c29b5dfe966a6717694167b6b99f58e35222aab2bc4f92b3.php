@@ -701,6 +701,6 @@ class __TwigTemplate_bfa371fe83507d0ac1cb2037019eed31ada96e3b5ae891a7aff38d3abf3
 
     public function getSourceContext()
     {
-        return new Source("", "display/results/table.twig", "E:\\joel\\python\\charm\\proyectoFinalDi\\USBWebserver v8.6.6\\phpmyadmin\\templates\\display\\results\\table.twig");
+        return new Source("", "display/results/table.twig", "E:\\joel\\python\\charm\\EzTestGenerator\\USBWebserver v8.6.6\\phpmyadmin\\templates\\display\\results\\table.twig");
     }
 }

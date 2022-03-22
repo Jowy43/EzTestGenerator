@@ -9,6 +9,8 @@ counter = 0
 
 
 class SplashScreen(QMainWindow):
+    """ Genera una ventana de carga de la aplicación. """
+
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_SplashScreen()
@@ -33,6 +35,7 @@ class SplashScreen(QMainWindow):
         self.show()
 
     def progress(self):
+        """controla la barra de prograso"""
         global counter
         self.ui.progressBar.setValue(counter)
         if counter > 100:

@@ -6,7 +6,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
 from PySide2.QtWidgets import *
 
 import UIclass.var
-import pdf.pdf
+from pdf.Dialog import CustomDialog
 from pdf.Examen import Examen
 from pdf.Preguntas import Preguntas
 from UI.mainWindow import Ui_MainWindow
@@ -14,13 +14,17 @@ from UIclass.Conection import Conection
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    """
+        Ventana principal de la aplicación donde se crear y visualizan los examenes.
+    """
+
+    def __init__(self, user: int):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
 
-        self.user = 2
+        self.user = user
 
         # Pagina por defecto al iniciar la aplicación
         self.ui.pages_widget.setCurrentWidget(self.ui.pg_home)
@@ -40,21 +44,28 @@ class MainWindow(QMainWindow):
         self.ui.btn_menu_home_3.clicked.connect(lambda: self.ui.pages_widget.setCurrentWidget(self.ui.pg_list))
         # Enlaces para crear tests
         # Crear nombre del test
-        self.ui.btn_menu_home_3.clicked.connect(lambda: ListarTests(self.ui, self.user))
         self.ui.btn_crearTest.clicked.connect(lambda: Crear_Test(self.ui, self.user))
+        # Muestra un lista de los test
+        self.ui.btn_menu_home_3.clicked.connect(lambda: ListarTests(self.ui, self.user))
         self.show()
 
 
 class ListarTests:
+    """
+        En esta clase contorlarmos la generación y los eventos double click de la lista de examenes
+    """
+
     def __init__(self, ui: Ui_MainWindow, user: int):
         super(ListarTests, self).__init__()
         self.ui = ui
+        self.ui.listWidgetTests.clear()
         all = ListarTests.allTestUsuario(user)
         for x in all:
             self.ui.listWidgetTests.addItem(str(x[0]) + "-" + str(x[1]))
         self.ui.listWidgetTests.itemDoubleClicked.connect(lambda: self.getItem())
 
     def getItem(self):
+        """ Al hacer doble click en un item de la lista se crea un objecto examen con todas las preguntas """
         id = self.ui.listWidgetTests.currentItem().text().split("-")[0]
         titulo = self.ui.listWidgetTests.currentItem().text().split("-")[1]
         resul = self.allPreguntasTest(id)
@@ -62,10 +73,12 @@ class ListarTests:
         for x in resul:
             lpreguntas.append(Preguntas(str(x[1]), str(x[3]), str(x[4])))
         Examen(lpreguntas, titulo)
+        self.dialog = CustomDialog()
+        self.dialog.show()
 
     def allPreguntasTest(self, id: int):
+        """ Devuelve todas las preguntas de un test """
         con = Conection.newConnection()
-
         cur = con.cursor()
         sql = "select * from preguntas where idTest = '%s'" % id
         cur.execute(sql)
@@ -73,6 +86,7 @@ class ListarTests:
         return result
 
     def allTestUsuario(user: int):
+        """Devuelve todas los test de un usuario"""
         con = Conection.newConnection()
 
         cur = con.cursor()
@@ -83,19 +97,22 @@ class ListarTests:
 
 
 class PreguntaActual():
+    """ En esta clase se controla el estado de la pregunta actual y los eventos de la misma """
+
     def __init__(self, ui: Ui_MainWindow, IdTest: int, user: int):
         super(PreguntaActual, self).__init__()
         self.ui = ui
         self.IdTest = IdTest
         self.preguntaId = None
 
-        self.ui.btn_siguientePregunta.clicked.connect(
-            lambda: Crear_pregunta(self.ui, self.IdTest))
-        self.ui.btn_finalizarTest.clicked.connect(lambda: Finalizar_Test(self.ui, self.IdTest))
+        self.ui.btn_siguientePregunta.clicked.connect(lambda: Crear_pregunta(self.ui, self.IdTest))
+        self.ui.btn_finalizarTest.clicked.connect(lambda: Finalizar_Test(self.ui, self.IdTest, user))
 
 
 class Finalizar_Test():
-    def __init__(self, ui: Ui_MainWindow, idTest: int):
+    """Se encarga de la fase final de la creación del test. Reinicia todos los campos y inserta la ultima pregunta"""
+
+    def __init__(self, ui: Ui_MainWindow, idTest: int, user: int):
         super(Finalizar_Test, self).__init__()
         self.ui = ui
         self.IdTest = idTest
@@ -112,10 +129,12 @@ class Finalizar_Test():
         self.ui.checkBox_resB.setChecked(False)
         self.ventana: MainWindow = UIclass.var.mainWin
         self.ventana.close()
-        UIclass.var.mainWin = MainWindow()
+        UIclass.var.mainWin = MainWindow(user)
 
 
 class Crear_pregunta():
+    """Controla cada una de las preguntas y las inserta en la base de datos"""
+
     def __init__(self, ui: Ui_MainWindow, idTest: int):
         super(Crear_pregunta, self).__init__()
         self.ui = ui
@@ -130,6 +149,7 @@ class Crear_pregunta():
             self.siguientePregunta()
 
     def siguientePregunta(self):
+        """Resetea los campos para la siguiente pregunta"""
         self.cont += 1
         self.ui.label_numeroPregunta.setText("Pregunta número " + str(self.cont))
         self.ui.textEdit_Enunciado.setText("")
@@ -142,6 +162,7 @@ class Crear_pregunta():
     def crearPregunta(objeto: object, ui: Ui_MainWindow, nombre: str, idTest: int, respuestaA: str, respuestaB: str,
                       checkBox_resA: bool,
                       checkBox_resB: bool):
+        """Función estatica que permite la creación e inserción de la pregunta del test"""
         if not nombre:
             ui.label_preguntaError.setText(
                 "Ocurrio un error al crear la pregunta.\n Introduce unha pregunta válida.")
@@ -162,12 +183,12 @@ class Crear_pregunta():
                 nombre, idTest, respuestaA, respuestaB, correcta)
             cur.execute(sql)
             con.commit()
-            print(sql)
             return cur.lastrowid
 
 
-# Clase para crear los test e insertarlos en la base de datos
 class Crear_Test:
+    """Clase para crear los test e insertarlos en la base de datos"""
+
     def __init__(self, ui: Ui_MainWindow, user: str):
         super(Crear_Test, self).__init__()
         self.ui = ui
@@ -176,7 +197,8 @@ class Crear_Test:
             self.ui.pages_test_create.setCurrentWidget(self.ui.preguntas_test)
             PreguntaActual(self.ui, self.lastTestId, user)
 
-    def crearTest(self, nombre: str, user: str):
+    def crearTest(self, nombre: str, user: int):
+        """Se inserta el nuevo test"""
         if not nombre:
             self.ui.label_tituloTestError.setText(
                 "Ocurrio un error al crear el test.\n Introduce un nombre válido.")
@@ -185,6 +207,7 @@ class Crear_Test:
             con = Conection.newConnection()
             cur = con.cursor()
             sql = "Insert into tests(nombreTest,idCuenta) VALUES('%s','%s')" % (nombre, user)
+            print(sql)
             cur.execute(sql)
             con.commit()
             self.ui.lineEdit_nombreTest.setText("")
@@ -192,6 +215,7 @@ class Crear_Test:
 
 
 class UIFunctions(MainWindow):
+    """Se encarga de las animaciones del menu"""
 
     def toggleMenu(self, maxWidth, enable):
         if enable:

@@ -3,6 +3,11 @@ import pdfkit
 
 
 class createPdf:
+    """
+        Clase que genera el pdf para que funciones tenemos que instalar la libreria externa wkhtmltopdf
+        https://wkhtmltopdf.org/downloads.html
+    """
+
     def __init__(self, exam, tituloExam: str):
         super(createPdf, self).__init__()
         self.env = Environment(loader=FileSystemLoader("pdf"))
@@ -16,5 +21,4 @@ class createPdf:
             'margin-left': '0.1in',
         }
         config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
-
         pdfkit.from_string(self.html, tituloExam + '.pdf', options=option, configuration=config)
