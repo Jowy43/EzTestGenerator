@@ -1,0 +1,8 @@
+<h1 style="text-align: center;"><strong>Examen</strong></h1>
+{% for pregunta in preguntas %}
+<div style="padding-left: 133px; padding-top: 22px; font-size:20px">
+    <p>1- {{ preguntas[pregunta].titulo }}</p>
+    <p style="padding-left: 40px;">a) {{ preguntas[pregunta].resA}}</p>
+    <p style="padding-left: 40px;">b) {{ preguntas[pregunta].resB}}</p>
+</div>
+{% endfor %}
